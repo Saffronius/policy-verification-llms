@@ -1,43 +1,109 @@
-# policy-verification-llms
-Summer research work over utilization of llms for access control policy verification and generation.
+# Policy Verification and Generation using LLMs
 
-# Description
+## Description
 
-This project uses the Llama-3 language model to generate a regex pattern that matches a set of given strings. The strings are read from a text file, where each string is on a new line. The generated regex pattern is printed to the console.
+This project utilizes Large Language Models (LLMs), specifically Claude 3.5 Sonnet and llama-3 , for access control policy verification, generation, and comparison. It integrates with the quacky tool for policy analysis and employs regex generation for string matching.
 
-The project aims to generate a regex pattern that is not overly permissive and is sufficiently restrictive. However, please note that the quality and correctness of the generated regex depend on the capabilities of the Llama-3 model and the complexity of the strings.
+Key features:
+- Generate new policies based on descriptions of existing policies
+- Compare original and generated policies using quacky
+- Generate regex patterns matching strings from policies
+- Analyze policies across different sample sizes
+- Compute and store various metrics for policy comparison
 
-# Dependencies
+## Dependencies
 
-    The project requires the requests library to send HTTP requests to the Llama-3 API.
-    The Llama-3 language model must be accessible via an API at http://localhost:11434/api/generate.
+- Python 3.x
+- pandas
+- anthropic
+- subprocess
+- re
+- math
+- json
+- quacky (separate tool, must be installed and accessible)
 
-# Installing
+## Installation
 
-    Clone the repository.
-    Install the required libraries using pip:
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/policy-verification-llms.git
+   cd policy-verification-llms
+   ```
 
-# pip install requests
+2. Install the required Python libraries:
+   ```
+   pip install pandas anthropic
+   ```
 
-    Replace path_to_your_file.txt in the script with the path to your text file containing the strings.
+3. Ensure quacky is installed and its path is correctly set in the script.
 
-# Executing
+4. Set up your Anthropic API key as an environment variable or directly in the script (not recommended for security reasons).
 
-    Run the script using Python:
+## Configuration
 
-    python script_name.py
+Before running the script, ensure the following paths are correctly set:
 
-    The generated regex pattern will be printed to the console.
+- `quacky_path`: Path to the quacky.py script
+- `working_directory`: Directory containing quacky and related files
+- `response_file_path`: Path for storing generated regex
+- `result_table_path`: Path for CSV file storing analysis results
+- `generated_policy_path`: Path for storing generated policies
 
-# Help
+## Usage
 
-If you encounter any issues or have any questions, please open an issue in the repository.
-# Authors
+Run the script using Python:
 
-    Adarsh Vatsa
+```
+python final-prototype.py
+```
 
-# Version History
+When prompted, enter the path to the policy file you want to analyze.
 
-    0.1
-        Initial Release
+The script will:
+1. Read the original policy
+2. Generate a description of the policy using Claude
+3. Generate a new policy based on this description
+4. Compare the original and generated policies using quacky
+5. Perform analysis on both policies for different sample sizes
+6. Generate regex patterns for string matching
+7. Compute various metrics and ratios
+8. Store results in a CSV file
 
+## Output
+
+- Generated policies are saved as JSON files
+- Analysis results are stored in a CSV file
+- Console output provides information on each step of the process
+
+## Troubleshooting
+
+If you encounter issues:
+- Ensure all paths are correctly set
+- Check that quacky is properly installed and accessible
+- Verify your Anthropic API key is correct and has necessary permissions
+
+## Contributing
+
+Contributions to improve the project are welcome. Please follow these steps:
+1. Fork the repository
+2. Create a new branch for your feature
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
+
+## License
+
+[Specify your license here]
+
+## Authors
+
+- Adarsh Vatsa
+
+## Version History
+
+- 0.2
+  - Integration with Claude 3.5 Sonnet
+  - Added policy generation and comparison features
+  - Improved analysis and metrics computation
+- 0.1
+  - Initial Release
