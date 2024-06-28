@@ -93,7 +93,6 @@ Contributions to improve the project are welcome. Please follow these steps:
 
 ## License
 
-[Specify your license here]
 
 ## Authors
 
